@@ -1,0 +1,20 @@
+# Python virtual environment
+venv/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# IDE-specific files
+.vscode/
+.idea/
+
+# Trained model files (optional, good practice for large files)
+*.pt
+*.json
+
+# Exclude the data folder if it contains large images
+# data/

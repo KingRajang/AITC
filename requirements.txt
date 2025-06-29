@@ -1,0 +1,14 @@
+# requirements.txt
+
+# For YOLOv8 object detection
+ultralytics
+
+# For DBSCAN clustering and numerical operations
+scikit-learn
+numpy
+
+# For image handling (often a dependency of other libraries)
+Pillow
+
+# Backend for image processing used by ultralytics and others
+opencv-python
