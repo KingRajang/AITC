@@ -17,8 +17,8 @@ This README serves as the central guide for understanding the project's architec
 Our system is built on a **three-phase methodology** that creates a pipeline from visual data to intelligent action.  
 This modular design allows us to test and improve each part of the system independently.
 
-### 📂 Project Directory Structure
-
+## 📂 Project Directory Structure
+```plaintext
 aitc/
 │
 ├── config/              # All configuration files (lane definitions, sim params)
@@ -29,7 +29,7 @@ aitc/
 │   ├── simulation/      # Contains the "Jamming Machine" simulator
 │   └── vision/          # Contains the YOLOv8 and DBSCAN processors
 ├── main_vision_processing.py  # Entrypoint script for Phase 1
-└── main_rl_training.py      # Entrypoint script for Phase 2 & 3
+└── main_rl_training.py        # Entrypoint script for Phase 2 & 3
 
 ## 🚦 Phase 1: Vision Pipeline (State Assessment)
 
