@@ -179,8 +179,4 @@ pip install -r requirements.txt
 * **Improve Reward Function:** Check if the reward function properly incentivizes efficient traffic flow.
 * **Longer Training:** Try 20,000 or 50,000 episodes to see potential improvements.
 
----
 
-Let’s get to work and make AITC even better! 🚀
-
-```
