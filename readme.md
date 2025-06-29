@@ -1,81 +1,20 @@
-Status: Initial Framework Complete
-
-1. Project Overview
-Welcome to the AITC project repository! We have successfully built and tested the complete end-to-end framework for our thesis. This includes the three core phases:
-
-Phase 1: Vision Pipeline: Uses YOLOv8 and DBSCAN to analyze traffic images and determine vehicle counts and lane density.
-
-Phase 2: "Jamming Machine" Simulator: A custom environment where our agent can train safely and quickly.
-
-Phase 3: Q-Learning Agent: The "brain" that learns to control the traffic signals.
-
-2. Current Status & Next Steps
-We have just completed our first full training run of 10,000 episodes.
-
-Result: The agent currently performs similarly to a basic fixed-time controller (a -0.14% improvement in waiting time).
-
-This is our scientific baseline. Our job now is to work together to improve this number. This is the experimental phase of our thesis.
-
-Our immediate goal is to analyze the training data (from training_log.json) and tune the system's hyperparameters.
-
-3. How to Set Up the Project
-To get started, follow these steps in your WSL Ubuntu terminal:
-
-Clone the repository:
-
-git clone <the-repo-url-you-create>
+AITC: AI-Powered Adaptive Traffic Control (Thesis Project)1. Project Overview & GoalWelcome to the AITC project repository! This framework is the official implementation for the thesis project, "Traffic Control Using Artificial Intelligence For Adaptive And Optimized Traffic Management."The goal of this project is to design, train, and evaluate an intelligent system that can adaptively control traffic signals in real-time. We achieve this by integrating three distinct AI algorithms, each handling a specific part of the problem.This README serves as the central guide for understanding the project's architecture, workflow, and how to run the experiments.2. System Architecture & LogicOur system is built on a three-phase methodology that creates a pipeline from visual data to intelligent action. This modular design allows us to test and improve each part of the system independently.Project Directory Structureaitc/
+│
+├── config/              # All configuration files (lane definitions, sim params)
+├── data/                # Input images, output images, and generated data files
+├── notebooks/           # Jupyter notebooks for testing and analysis
+├── src/                 # All Python source code for the project
+│   ├── agent/           # Contains the Q-Learning agent
+│   ├── simulation/      # Contains the "Jamming Machine" simulator
+│   └── vision/          # Contains the YOLOv8 and DBSCAN processors
+├── main_vision_processing.py  # Entrypoint script for Phase 1
+└── main_rl_training.py      # Entrypoint script for Phase 2 & 3
+Phase 1: Vision Pipeline (State Assessment)What it does: This phase analyzes real-world traffic conditions from images.How it works:The main_vision_processing.py script reads the lane definitions from config/lane_config.json.For each lane, it loads the corresponding image (e.g., lane_north.jpg).The YOLOProcessor (src/vision/yolo_processor.py) detects all vehicles in the image.The DBSCANAnalyzer (src/vision/dbscan_analyzer.py) takes the vehicle locations, performs clustering to understand their spatial relationship, and calculates two key metrics: vehicle_count and density_score.Output: A single file, data/initial_state.json, that describes the traffic situation for the entire intersection.Phase 2: "Jamming Machine" (Simulation Environment)What it does: This is a custom-built simulator that provides a safe, fast, and controlled environment for training our AI agent. It avoids the massive computational cost of running the vision pipeline at every training step.How it works:The JammingMachine class (src/simulation/environment.py) is initialized. It can optionally be "seeded" with the real-world conditions from initial_state.json.It uses stochastic models from src/simulation/traffic_models.py to simulate new cars arriving and cars departing based on the current traffic light signals.It keeps track of the state of the intersection (vehicle counts, waiting times) and calculates a reward signal based on how well the intersection is managed.Phase 3: Q-Learning Agent (Policy Optimization)What it does: This is the "brain" of the system. It learns the best strategy (policy) for which traffic light to turn green under different traffic conditions.How it works:The QLearningAgent (src/agent/q_learning_agent.py) is created.It interacts with the "Jamming Machine" for thousands of episodes.In each step, the agent observes the state of the simulator, chooses an action (e.g., "set North-South to green"), and receives a reward based on the outcome.It uses this feedback to update its internal "Q-table," which gradually learns the best action to take for any given state.Output: A trained_q_table.json file, which represents the agent's learned knowledge, and a training_log.json file to track its performance over time.3. How to Set Up and Run the ProjectFollow these steps in your WSL Ubuntu terminal to get the project running.Step 1: Initial SetupClone the repository:git clone <the-repo-url>
 cd aitc
-
-Create a Python virtual environment:
-
-python3 -m venv venv
-
-Activate the virtual environment:
-
+Create and activate a Python virtual environment:python3 -m venv venv
 source venv/bin/activate
-
-(Remember to do this every time you open a new terminal to work on the project!)
-
-Install all required libraries:
-
-pip install -r requirements.txt
-
-4. How to Run the Framework
-The project has two main parts you can run:
-
-A) Test the Vision Pipeline (for one image):
-This is useful for debugging our image processing code.
-
-Start the Jupyter server: jupyter lab
-
-Open your browser and navigate to notebooks/1_vision_pipeline_testbed.ipynb.
-
-Run the cells to see the detection results on a single lane image.
-
-B) Run the Full Experiment:
-This runs the entire process, from analyzing all images to training the agent.
-
-Run Phase 1 (Vision):
-
-python main_vision_processing.py
-
-(This creates the data/initial_state.json file)
-
-Run Phase 2 & 3 (Training):
-
-python main_rl_training.py
-
-(This will take a long time. It reads initial_state.json and produces trained_q_table.json and training_log.json)
-
-5. Let's Get to Work!
-Our next tasks are:
-
-Analyze the learning curve in 2_results_analysis.ipynb to see if the agent was actually improving.
-
-Tune Hyperparameters: Experiment with learning_rate, discount_factor, and the reward function weights in environment.py.
-
-Improve State Representation: Can we make the state vector more informative for the agent?
-
-Longer Training: Try running for 20,000 or 50,000 episodes.
-
-Let's start collaborating and get this agent trained!
+(Remember to run source venv/bin/activate every time you open a new terminal to work on the project!)Install all required libraries:pip install -r requirements.txt
+Step 2: Running the Full ExperimentThis is the standard workflow for executing the entire project.Prepare Images: Make sure your four traffic images (lane_north.jpg, etc.) are placed inside the data/input_images/ folder.Run Phase 1 (Vision Pipeline):python main_vision_processing.py
+(This analyzes the images and creates the data/initial_state.json file)Run Phase 2 & 3 (Agent Training):python main_rl_training.py
+(This is the long part. It reads initial_state.json and starts the 10,000-episode training process. It will produce trained_q_table.json and training_log.json when finished.)Step 3: Analyzing the ResultsAfter training is complete, you can analyze the performance.Start the Jupyter server:jupyter lab
+Open the analysis notebook: In your browser, navigate to notebooks/2_results_analysis.ipynb.Run all cells: This will load the training_log.json and trained_q_table.json, evaluate the agent's performance against a baseline, and generate the learning curve and comparison plots.4. Current Status and Next StepsCurrent Result: We have completed our first training run. The agent performs similarly to a standard fixed-time controller, giving us our scientific baseline.Next Steps (The Research Phase): Our job now is to collaborate on improving this result.Analyze the learning curve from the analysis notebook. Is the agent actually learning, or is the reward curve flat?Tune Hyperparameters: Experiment with learning_rate, discount_factor, and the reward function weights in environment.py.Improve the Reward Function: Is our reward function truly guiding the agent towards the desired behavior? Maybe we need to adjust the weights.Longer Training: Try running for 20,000 or 50,000 episodes to see if the agent improves with more experience.Let's get to work!
