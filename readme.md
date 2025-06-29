@@ -30,6 +30,7 @@ aitc/
 │   └── vision/          # Contains the YOLOv8 and DBSCAN processors
 ├── main_vision_processing.py  # Entrypoint script for Phase 1
 └── main_rl_training.py        # Entrypoint script for Phase 2 & 3
+```
 
 ## 🚦 Phase 1: Vision Pipeline (State Assessment)
 
