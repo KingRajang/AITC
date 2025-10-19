@@ -1,0 +1,18 @@
+{
+    "North_Approach": {
+        "vehicle_count": 11,
+        "density_score": 0.3
+    },
+    "South_Approach": {
+        "vehicle_count": 14,
+        "density_score": 0.9
+    },
+    "East_Approach": {
+        "vehicle_count": 19,
+        "density_score": 0.3
+    },
+    "West_Approach": {
+        "vehicle_count": 11,
+        "density_score": 0.3
+    }
+}
