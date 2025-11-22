@@ -1,0 +1,84 @@
+{
+  "actuated_baseline": 20940.65,
+  "baseline_ql_result": 20879.22,
+  "baseline_gap": 61.43,
+  "baseline_gap_percent": -0.3,
+  "num_episodes": 100,
+  "configs": [
+    {
+      "config_num": 1,
+      "name": "Config 1 - Baseline",
+      "weights": {
+        "throughput": 0.4,
+        "queue": 0.3,
+        "waiting": 0.2,
+        "fairness": 0.1
+      },
+      "mean_reward": 11496.903908423847,
+      "std_reward": 43.55188945518561,
+      "gap": 9443.746091576155,
+      "gap_percent": 45.09767410073782
+    },
+    {
+      "config_num": 2,
+      "name": "Config 2 - Moderate Throughput",
+      "weights": {
+        "throughput": 0.5,
+        "queue": 0.25,
+        "waiting": 0.2,
+        "fairness": 0.05
+      },
+      "mean_reward": 11289.74139035801,
+      "std_reward": 49.779778966566155,
+      "gap": 9650.90860964199,
+      "gap_percent": 46.0869581872673
+    },
+    {
+      "config_num": 3,
+      "name": "Config 3 - High Throughput",
+      "weights": {
+        "throughput": 0.55,
+        "queue": 0.25,
+        "waiting": 0.15,
+        "fairness": 0.05
+      },
+      "mean_reward": 10463.210949705146,
+      "std_reward": 52.02767343829588,
+      "gap": 10477.439050294855,
+      "gap_percent": 50.033972442569144
+    },
+    {
+      "config_num": 4,
+      "name": "Config 4 - Very High Throughput",
+      "weights": {
+        "throughput": 0.6,
+        "queue": 0.2,
+        "waiting": 0.15,
+        "fairness": 0.05
+      },
+      "mean_reward": 10003.945097084446,
+      "std_reward": 63.732018366494366,
+      "gap": 10936.704902915555,
+      "gap_percent": 52.227151033590424
+    },
+    {
+      "config_num": 5,
+      "name": "Config 5 - Extreme Throughput",
+      "weights": {
+        "throughput": 0.7,
+        "queue": 0.15,
+        "waiting": 0.1,
+        "fairness": 0.05
+      },
+      "mean_reward": 8740.608170829204,
+      "std_reward": 62.77908057499104,
+      "gap": 12200.041829170797,
+      "gap_percent": 58.260091397214495
+    }
+  ],
+  "linear_model": {
+    "slope": 9554.683506057498,
+    "intercept": 5286.692168388248,
+    "r_squared": 0.9297921439001684
+  }
+}

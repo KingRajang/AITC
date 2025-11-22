@@ -1,22 +1,22 @@
 {
   "lanes": [
     {
-      "lane_id": "North_Approach",
+      "lane_id": "lane_north",
       "direction": "North",
       "image_filename": "lane_north.jpg"
     },
     {
-      "lane_id": "South_Approach",
+      "lane_id": "lane_south",
       "direction": "South",
       "image_filename": "lane_south.jpg"
     },
     {
-      "lane_id": "East_Approach",
+      "lane_id": "lane_east",
       "direction": "East",
       "image_filename": "lane_east.jpg"
     },
     {
-      "lane_id": "West_Approach",
+      "lane_id": "lane_west",
       "direction": "West",
       "image_filename": "lane_west.jpg"
     }

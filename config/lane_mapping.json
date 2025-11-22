@@ -1,0 +1,31 @@
+{
+  "_comment": "Explicit lane mapping configuration - DO NOT CHANGE ORDER",
+  "_description": "Maps vision processing lane IDs to simulation lane names",
+
+  "lane_mapping": {
+    "lane_north": "North",
+    "lane_south": "South",
+    "lane_east": "East",
+    "lane_west": "West"
+  },
+
+  "lane_directions": {
+    "North": "north",
+    "South": "south",
+    "East": "east",
+    "West": "west"
+  },
+
+  "lane_order": ["North", "South", "East", "West"],
+
+  "_validation": {
+    "description": "Ensure vision processing outputs use these exact keys",
+    "required_keys": ["lane_north", "lane_south", "lane_east", "lane_west"],
+    "output_format_example": {
+      "lane_north": {
+        "vehicle_count": "int",
+        "density_score": "float (0.0-1.0)"
+      }
+    }
+  }
+}

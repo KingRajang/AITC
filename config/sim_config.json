@@ -1,11 +1,74 @@
 {
+  "_comment": "Traffic Simulation Configuration - UPDATED WITH REWARD WEIGHTS",
+
   "simulation_episodes": 10000,
   "max_steps_per_episode": 300,
+
   "traffic_arrival_rates": {
-    "light": [1, 3],
-    "medium": [2, 5],
-    "heavy": [4, 8]
+    "_comment": "Poisson arrival rates for different traffic scenarios",
+    "light": [0, 2],
+    "medium": [1, 3],
+    "heavy": [2, 5]
   },
+
   "lane_capacity": 50,
-  "saturation_flow_rate": 1.8
+  "saturation_flow_rate": 5,
+
+  "_comment_reward": "═══════════════════════════════════════════════════════════",
+  "_comment_reward2": "REWARD SYSTEM CONFIGURATION (NEW!)",
+  "_comment_reward3": "═══════════════════════════════════════════════════════════",
+
+  "reward_weights": {
+    "_comment": "Weights must sum to 1.0. Adjust based on optimization priorities.",
+    "_why_this_matters": "Change these to test different optimization strategies without code changes!",
+
+    "throughput": 0.45,
+    "queue": 0.3,
+    "waiting": 0.15,
+    "fairness": 0.1
+  },
+
+  "normalization_params": {
+    "_comment": "Maximum expected values for normalization (0-100 scale)",
+    "max_throughput": 20,
+    "max_waiting": 100,
+    "max_queue_std": 20
+  },
+
+  "_experiment_presets": {
+    "_comment": "Quick presets for different experiments - copy to reward_weights above",
+    "_usage": "For thesis experiments, test each preset and compare results!",
+
+    "balanced": {
+      "_description": "Equal consideration of all metrics",
+      "throughput": 0.4,
+      "queue": 0.3,
+      "waiting": 0.2,
+      "fairness": 0.1
+    },
+
+    "throughput_focused": {
+      "_description": "Maximize vehicles passing through intersection",
+      "throughput": 0.6,
+      "queue": 0.2,
+      "waiting": 0.1,
+      "fairness": 0.1
+    },
+
+    "fairness_focused": {
+      "_description": "Ensure all lanes get equal service",
+      "throughput": 0.2,
+      "queue": 0.2,
+      "waiting": 0.2,
+      "fairness": 0.4
+    },
+
+    "queue_minimization": {
+      "_description": "Reduce queue length at all costs",
+      "throughput": 0.2,
+      "queue": 0.5,
+      "waiting": 0.2,
+      "fairness": 0.1
+    }
+  }
 }

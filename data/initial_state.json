@@ -1,17 +1,17 @@
 {
-    "North_Approach": {
+    "lane_north": {
         "vehicle_count": 11,
         "density_score": 0.3
     },
-    "South_Approach": {
+    "lane_south": {
         "vehicle_count": 14,
         "density_score": 0.9
     },
-    "East_Approach": {
+    "lane_east": {
         "vehicle_count": 19,
         "density_score": 0.3
     },
-    "West_Approach": {
+    "lane_west": {
         "vehicle_count": 11,
         "density_score": 0.3
     }
